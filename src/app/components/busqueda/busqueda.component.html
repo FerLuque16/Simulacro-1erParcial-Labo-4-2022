@@ -1,0 +1,43 @@
+<div class="jumbotron">
+  <div class="container">
+    <h3>Listado de peliculas</h3>
+    <!-- <app-tabla-pelicula [listaDePeliculas]="listaPeliculas" (peliculaSeleccionadaEvent)="peliculaDetalle( $event )"></app-tabla-pelicula> -->
+    <app-peliculas-listado [listaDePeliculas]="listaPeliculas" (peliculaTomadaEvent)="peliculaDetalle( $event )"></app-peliculas-listado>
+    <p>
+      <a class="btn btn-primary btn-lg" href="#" role="button"
+        >Learn more &raquo;</a
+      >
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Borrar</h2>
+      <p>
+        Controles necesarios para borrar
+      </p>
+      <p>
+        <a class="btn btn-secondary" href="#" role="button"
+          >View details &raquo;</a
+        >
+      </p>
+    </div>
+    <div class="col-md-4">
+      <app-detalle-pelicula [pelicula]="peliculaSeleccionada"></app-detalle-pelicula>
+    </div>
+    <div class="col-md-4">
+      <h2>Modificar</h2>
+      <p>
+        Controles necesarios para modificar.
+      </p>
+      <p>
+        <a class="btn btn-secondary" href="#" role="button"
+          >View details &raquo;</a
+        >
+      </p>
+    </div>
+  </div>
+</div>
