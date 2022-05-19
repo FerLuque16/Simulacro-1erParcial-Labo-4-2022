@@ -3,7 +3,7 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Tipo</th>
+            <th>Genero</th>
             <th>Fecha</th>
             <th>Cantidad de Publico</th>
             <th>Foto</th>
@@ -13,9 +13,9 @@
         <tr *ngFor="let item of listaDePeliculas" (click)="mostrarDetalle(item)">
             <td>{{item.id}}</td>
             <td>{{item.nombre}}</td>
-            <td>{{item.tipo}}</td>
-            <td>{{item.fechaDeEstreno}}</td>
-            <td>{{item.cantidadPublico}}</td>
+            <td>{{item.genero |titlecase}}</td>
+            <td>{{item.fechaDeEstreno | date:'dd/MM/yyyy'}}</td>
+            <td>{{item.cantidadPublico |number}}</td>
             <td>{{item.fotoPelicula}}</td>
         </tr>
         

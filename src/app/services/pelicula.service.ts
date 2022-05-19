@@ -15,4 +15,14 @@ export class PeliculaService {
   guardarPelicula(pelicula:Pelicula){
     this.firestore.collection('peliculas').add(pelicula)
   }
+
+  traerPeliculas(): Observable<Pelicula[]>{
+    this.itemsCollection = this.firestore.collection<Pelicula>('peliculas');
+    return this.itemsCollection.valueChanges();
+  }
+
+  // traerActores():Observable<Actor[]>{
+  //   this.itemsCollection = this.firestore.collection<Actor>('actores');
+  //   return this.itemsCollection.valueChanges();
+  // }
 }

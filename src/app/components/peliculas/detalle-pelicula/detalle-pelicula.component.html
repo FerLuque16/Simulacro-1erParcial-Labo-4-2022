@@ -6,10 +6,13 @@
           Nombre pelicula: {{pelicula.nombre}}
       </p>
       <p>
-          Tipo de pelicula: {{pelicula.tipo}}
+          Genero de pelicula: {{pelicula.genero |titlecase}}
       </p>
       <p>
-          Fecha de estreno: {{pelicula.fechaDeEstreno}}
+          Fecha de estreno: {{pelicula.fechaDeEstreno |date:'dd/MM/yyyy'}}
+      </p>
+      <p>
+          Cantidad de publico: {{pelicula.cantidadPublico |number}}
       </p>
       <p>
           Foto: {{pelicula.fotoPelicula}}
