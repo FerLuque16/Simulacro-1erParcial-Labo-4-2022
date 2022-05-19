@@ -49,8 +49,8 @@ export class PeliculasAltaComponent implements OnInit {
   altaPelicula(){
 
     this.pelicula = {...this.peliculaForm.value, fotoPelicula: this.imagenPath, actores: this.actoresPelicula};
-    // this.imgService.subirArchivo(this.archivo,this.imagenPath);
-    // this.peliculaService.guardarPelicula(this.pelicula);
+    this.imgService.subirArchivo(this.archivo,this.imagenPath);
+    this.peliculaService.guardarPelicula(this.pelicula);
 
     console.log(this.pelicula)
 
