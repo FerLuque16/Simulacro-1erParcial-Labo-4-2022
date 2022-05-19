@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Actor } from 'src/app/classes/Actor';
 import { Pais } from 'src/app/interfaces/pais.interface';
+import { ActorService } from 'src/app/services/actor.service';
 
 @Component({
   selector: 'app-actor-alta',
@@ -13,22 +14,35 @@ export class ActorAltaComponent implements OnInit {
   listaDeActores: Actor[] = [];
   actor: Actor;
 
-  pais:Pais = {
+  pais1:Pais = {
     name:{
       common:'United Kingdom'
+    },
+    flags:{
+      svg:'https://flagcdn.com/gb.svg'
+    },
+    correcto:true
+  }
+
+  pais2:Pais = {
+    name:{
+      common:'España'
+    },
+    flags:{
+      svg:'https://flagcdn.com/es.svg'
     },
     correcto:true
   }
 
   actorForm:FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private actorService: ActorService) { 
     this.actor = new Actor('','',0);
 
     this.listaDeActores =[
-      {nombre:'Tom', apellido: 'Holland', edad: 25, pais:this.pais},
-      {nombre:'Tom',apellido:'Hardy',edad: 35, pais:this.pais},
-      {nombre:'Antonio', apellido:'Banderas',edad:52, pais:this.pais}
+      {nombre:'Tom', apellido: 'Holland', edad: 25, pais:this.pais1},
+      {nombre:'Tom',apellido:'Hardy',edad: 35, pais:this.pais1},
+      {nombre:'Antonio', apellido:'Banderas',edad:52, pais:this.pais2}
     ]
 
 
@@ -61,15 +75,17 @@ export class ActorAltaComponent implements OnInit {
 
   cargarPais(pais:Pais){
     this.actor.pais = pais;
-    this.pais = pais;
+    this.pais1 = pais;
     this.actorForm.controls['pais'].patchValue(pais.name.common);
   }
 
   altaActor(){
     console.log(this.actorForm.value);
-    this.actor = {...this.actorForm.value, pais: this.pais};
+    this.actor = {...this.actorForm.value, pais: this.pais1};
     console.log(this.actor)
-    this.listaDeActores.push(this.actor);
+    // this.listaDeActores.push(this.actor);
+
+    this.actorService.guardarActor(this.actor);
     console.log(this.listaDeActores)
     // this.actor = new Actor('','',0,'');
   }

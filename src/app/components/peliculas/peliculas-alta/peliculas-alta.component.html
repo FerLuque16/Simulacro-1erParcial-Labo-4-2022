@@ -1,1 +1,146 @@
-<p>peliculas-alta works!</p>
+<div class="container">
+	<main>
+		<div class="py-5 text-center">
+			<!-- <img
+				class="d-block mx-auto mb-4"
+				src="../assets/brand/bootstrap-logo.svg"
+				alt=""
+				width="72"
+				height="57"
+			/> -->
+			<h2>Alta de Pelicula</h2>
+			<p class="lead">
+				Esta es una pagina donde podras dar de alta a una pelicula
+			</p>
+		</div>
+
+		<form class="needs-validation" autocomplete="off" [formGroup]="peliculaForm" (ngSubmit)="altaPelicula()">
+			<input autocomplete="false" name="hidden" type="text" style="display:none;">
+			<div class="row g-5">
+				<div class="col-md-7 col-lg-8">
+					<h4 class="mb-3">Datos de la pelicula</h4>
+					<div class="row g-3">
+						<div class="col-sm-6">
+							<label for="firstName" class="form-label"
+								>Nombre</label
+							>
+							<input type="text" name="nombre" class="form-control" id="firstName" placeholder="Nombre" formControlName="nombre" required/>
+							<div *ngIf="peliculaForm.controls['nombre'].errors?.['required']" class="invalido">
+								<p>El nombre es requerido</p>
+							</div>
+							<div *ngIf="peliculaForm.controls['nombre'].errors?.['minlength']" class="invalido">
+								<p>El nombre debe ser mayor a 1 letras</p>
+							</div>
+						</div>
+                        <div class="col-sm-6">
+							<label for="fecha" class="form-label"
+								>Genero</label
+							>
+                            <select class="custom-select" (change)="cambiarGenero($event)">
+                                <option selected>Abrir para seleccionar</option>
+                                <option value="terror">Terror</option>
+                                <option value="comedia">Comedia</option>
+                                <option value="amor">Amor</option>
+                                <option value="otros">Otros</option>
+                              </select>
+                            <div *ngIf="peliculaForm.controls['genero'].errors?.['required']" class="invalido">
+								<p>El genero es obligatorio</p>
+							</div>
+							<!-- <input type="date" name="fecha" class="form-control"id="fecha" placeholder="Fecha" formControlName="fechadeEstreno" ngModel required/> -->
+							
+							
+						</div>	
+
+						<div class="col-sm-6">
+							<label for="fecha" class="form-label"
+								>Fecha de Esterno</label
+							>
+							<input type="date" name="fecha" class="form-control"id="fecha" placeholder="Fecha" formControlName="fechaDeEstreno" ngModel required/>
+							<div *ngIf="peliculaForm.controls['fechaDeEstreno'].errors?.['required']" class="invalido">
+								<p>El fecha de estreno es requerida</p>
+							</div>
+							
+						</div>	
+						<div class="col-6">
+							<label class="form-label">Cantidad de Publico</label>
+							<div class="input-group has-validation">
+								<input type="number" name="cantidadPublico" class="form-control" id="publico" placeholder="Cantidad de Publico" 
+								formControlName="cantidadPublico" ngModel required/>
+								<br>
+								
+							</div>
+							<div *ngIf="peliculaForm.controls['cantidadPublico'].errors?.['required']" class="invalido">
+								<p>La cantidad de publico es requerido</p>
+							</div>
+							<div *ngIf="peliculaForm.controls['cantidadPublico'].errors?.['min']" class="invalido">
+								<p>La cantdad debe ser mayor que 0</p>
+							</div>
+						</div>		
+							
+
+					</div>
+
+					<hr class="my-4" />
+					
+					<div class="row">
+						<div class="col-6">
+							<label class="form-label">Imagen de la pelicula</label>
+                            <div class="custom-file">
+                                <input type="file" id="customFile" accept=".jpg, .png, .jpeg, .svg"
+                                formControlName="fotoPelicula" (change)="archivoOnChange($event)">
+                                <label *ngIf="!peliculaForm.value.fotoPelicula" class="custom-file-label" for="customFile">Elegir imagen</label>
+                                <label *ngIf="peliculaForm.value.fotoPelicula" class="custom-file-label" for="customFile">{{imagenPath}}</label>
+                              </div>
+							<!-- <input type="text" name="pais" class="form-control" placeholder="Nacionalidad" formControlName="pais" ngModel required/>-->
+							<div *ngIf="peliculaForm.controls['fotoPelicula'].errors?.['required']" class="invalido">
+								Por favor seleccione la imagen de la pelicula.
+							</div>
+						</div>
+						<div class="col-md-5 col-lg-4 order-md-last">
+							<h4
+								class="d-flex justify-content-between align-items-center mb-3"
+							>
+								<span class="text-primary">Actores que participan en la pelicula</span>
+							</h4>
+							<ul *ngIf="pelicula" class="list-group mb-3 lista-actores-pelicula">
+								<li *ngFor="let actor of actoresPelicula" class="list-group-item d-flex align-items-center">
+									<img class="mr-1" [src]="actor.pais?.flags?.svg" [alt]="actor.pais?.name?.common" style="width: 2rem;" >
+									{{actor.nombre}} {{actor.apellido}}
+									<span class="material-symbols-outlined close-button m-auto" (click)="quitarActor(actor)">
+										close</span>
+									
+								</li>
+							</ul>
+							
+						</div>
+						<!-- <div class="col">
+							<img class="align-bottom" *ngIf="actor.pais?.flags?.svg" [src]="actor.pais?.flags?.svg" width="100px">
+						</div>		 -->
+					</div>
+				</div>
+				<!-- <app-tabla-paises (paisSeleccionadoEvent)="cargarPais($event)"></app-tabla-paises> -->
+                <app-tabla-actores (actorSeleccionadoEvent)="cargarActor($event)"></app-tabla-actores>
+			</div>
+      <!-- <button class="w-50 btn btn-primary btn-lg" type="submit">
+        Dar de alta
+      </button> -->
+	  <hr class="my-4" />
+
+      <!-- <button class="btn btn-primary" (click)="subirArchivo()" [disabled]="peliculaForm.controls['fotoPelicula'].errors?.['required']">Suvir archivo</button> -->
+
+      <!-- <button class="btn btn-success" (click)="verForm()">Ver estado del form</button> -->
+	  <p class="invalido" *ngIf="!peliculaForm.valid">Complete el formulario para habilitar el boton.</p>
+		<button class="w-50 btn btn-primary btn-lg" type="submit" [disabled]="!peliculaForm.valid">Dar de Alta</button>
+		</form>
+	</main>
+
+	<footer class="my-5 pt-5 text-muted text-center text-small">
+		<p class="mb-1">&copy; 2022 Fernando Luque</p>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a href="#">Privacy</a></li>
+			<li class="list-inline-item"><a href="#">Terms</a></li>
+			<li class="list-inline-item"><a href="#">Support</a></li>
+		</ul>
+	</footer>
+</div>
+

@@ -1,0 +1,13 @@
+<div class="col-md-5 col-lg-4 order-md-last">
+    <h4
+        class="d-flex justify-content-between align-items-center mb-3"
+    >
+        <span class="text-primary">Seleccionar Actor</span>
+    </h4>
+    <ul class="list-group mb-3 lista-actores">
+        <li *ngFor="let actor of actores|async" class="list-group-item" (click)="enviarActor(actor)">
+            <img [src]="actor.pais?.flags?.svg" [alt]="actor.pais?.name?.common" style="width: 2rem;">
+            {{actor.nombre |titlecase}} {{actor.apellido|titlecase}}
+        </li>
+    </ul>
+</div>

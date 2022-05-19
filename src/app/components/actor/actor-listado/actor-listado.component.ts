@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActorService } from 'src/app/services/actor.service';
 
 @Component({
   selector: 'app-actor-listado',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActorListadoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actorService:ActorService) { }
 
   ngOnInit(): void {
   }

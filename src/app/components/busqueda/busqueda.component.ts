@@ -14,12 +14,12 @@ export class BusquedaComponent implements OnInit {
   constructor() { 
 
     this.listaPeliculas = [
-      {id:1,nombre:'Titanic',tipo:'Amor',fechaDeEstreno:'24/04/2022',cantidadPublico:10000,fotoPelicula:'img'},
-      {id:2,nombre:'Dr Strange',tipo:'Accion',fechaDeEstreno:'05/05/2022',cantidadPublico:10000,fotoPelicula:'img'},
-      {id:3,nombre:'Avengers',tipo:'Otros',fechaDeEstreno:'24/04/2022',cantidadPublico:10000,fotoPelicula:'img'}      
+      {id:1,nombre:'Titanic',tipo:'Amor',fechaDeEstreno:'24/04/2022',cantidadPublico:10000,fotoPelicula:'img',actores:[]},
+      {id:2,nombre:'Dr Strange',tipo:'Accion',fechaDeEstreno:'05/05/2022',cantidadPublico:10000,fotoPelicula:'img',actores:[]},
+      {id:3,nombre:'Avengers',tipo:'Otros',fechaDeEstreno:'24/04/2022',cantidadPublico:10000,fotoPelicula:'img',actores:[]}      
     ]
 
-    this.peliculaSeleccionada = new Pelicula(0,'','','',0,'');
+    this.peliculaSeleccionada = new Pelicula(0,'','','',0,'',[]);
 
   }
 
