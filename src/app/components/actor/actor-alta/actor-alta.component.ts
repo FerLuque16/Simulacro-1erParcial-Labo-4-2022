@@ -13,25 +13,39 @@ export class ActorAltaComponent implements OnInit {
   listaDeActores: Actor[] = [];
   actor: Actor;
 
+  pais:Pais = {
+    name:{
+      common:'United Kingdom'
+    },
+    correcto:true
+  }
+
   actorForm:FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
-    this.actor = new Actor('','',0,'');
+  constructor(private fb: FormBuilder) { 
+    this.actor = new Actor('','',0);
 
     this.listaDeActores =[
-      {nombre:'Tom', apellido: 'Holland', edad: 25, paisDeNacimiento:'Inglaterra'},
-      {nombre:'Tom',apellido:'Hardy',edad: 35, paisDeNacimiento:'Inglaterra'},
-      {nombre:'Antonio', apellido:'Banderas',edad:52,paisDeNacimiento:'España'}
+      {nombre:'Tom', apellido: 'Holland', edad: 25, pais:this.pais},
+      {nombre:'Tom',apellido:'Hardy',edad: 35, pais:this.pais},
+      {nombre:'Antonio', apellido:'Banderas',edad:52, pais:this.pais}
     ]
 
 
     //Cambiar esto por fbgroup con el formbuilder
-    this.actorForm = new FormGroup({
-      nombre: new FormControl(''),
-      apellido: new FormControl(''),
-      edad:new FormControl(0),
-      pais: new FormControl('')
-    });
+    // this.actorForm = new FormGroup({
+    //   nombre: new FormControl(''),
+    //   apellido: new FormControl(''),
+    //   edad:new FormControl(0),
+    //   pais: new FormControl('')
+    // });
+
+    this.actorForm = fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      apellido:['',[Validators.required, Validators.minLength(3)]],
+      edad:[0,[Validators.required, Validators.min(2), Validators.max(99)]],
+      pais:['',Validators.required]
+    })
 
 
   }
@@ -46,12 +60,16 @@ export class ActorAltaComponent implements OnInit {
   }
 
   cargarPais(pais:Pais){
-    this.actor.paisDeNacimiento = pais.name.common;
+    this.actor.pais = pais;
+    this.pais = pais;
+    this.actorForm.controls['pais'].patchValue(pais.name.common);
   }
 
   altaActor(){
     console.log(this.actorForm.value);
-    // this.listaDeActores.push(this.actor);
+    this.actor = {...this.actorForm.value, pais: this.pais};
+    console.log(this.actor)
+    this.listaDeActores.push(this.actor);
     console.log(this.listaDeActores)
     // this.actor = new Actor('','',0,'');
   }
