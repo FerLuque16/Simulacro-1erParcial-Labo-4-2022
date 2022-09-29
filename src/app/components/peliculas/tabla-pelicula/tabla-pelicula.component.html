@@ -16,7 +16,7 @@
             <td>{{item.genero |titlecase}}</td>
             <td>{{item.fechaDeEstreno | date:'dd/MM/yyyy'}}</td>
             <td>{{item.cantidadPublico |number}}</td>
-            <td>{{item.fotoPelicula}}</td>
+            <td *ngIf="item.fotoPelicula"><img [src]="item.fotoPelicula" [alt]="item.nombre" width="50px"></td>
         </tr>
         
     </tbody>

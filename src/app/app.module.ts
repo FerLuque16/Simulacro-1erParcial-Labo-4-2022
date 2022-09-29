@@ -22,6 +22,13 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { TablaActoresComponent } from './components/actor/tabla-actores/tabla-actores.component';
+import { ActorPeliculaComponent } from './components/actor/actor-pelicula/actor-pelicula.component';
+import { ActorListaPeliculasComponent } from './components/actor/actor-lista-peliculas/actor-lista-peliculas.component';
+import { ActorDetallePaisComponent } from './components/actor/actor-detalle-pais/actor-detalle-pais.component';
+import { ActorDetalleComponent } from './components/actor/actor-detalle/actor-detalle.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegistroComponent } from './components/auth/registro/registro.component';
+import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 
 
 
@@ -37,7 +44,14 @@ import { TablaActoresComponent } from './components/actor/tabla-actores/tabla-ac
     DetallePeliculaComponent,
     TablaPaisesComponent,
     NavbarComponent,
-    TablaActoresComponent
+    TablaActoresComponent,
+    ActorPeliculaComponent,
+    ActorListaPeliculasComponent,
+    ActorDetallePaisComponent,
+    ActorDetalleComponent,
+    LoginComponent,
+    RegistroComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,

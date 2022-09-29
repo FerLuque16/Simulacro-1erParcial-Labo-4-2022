@@ -1,1 +1,22 @@
-<p>actor-listado works!</p>
+<table class="table table-hover">
+    <thead>
+        <tr>    
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Pais</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let actor of actores">
+            <td>{{actor.nombre}}</td>
+            <td>{{actor.apellido}}</td>
+            <td>{{actor.edad}}</td>
+            <td>{{actor.pais?.name?.common}}</td>
+            <td><button class="btn btn-primary" (click)="mostrarPeliculasActor(actor)">Peliculas del Actor</button></td>
+            <td><button class="btn btn-warning" (click)="mostrarPaisActor(actor)">Detalles del Pais</button></td>
+            <td><button class="btn btn-success" (click)="mostrarDetalleActor(actor)">Detalles del Actor</button></td>
+        </tr>
+        
+    </tbody>
+</table>

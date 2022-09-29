@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <div class="container">
+      <h3>Listado de peliculas</h3>
+
+      <app-actor-listado [actores]="actores" [peliculas]="peliculas" (actorDetalleEvent)="mostrarActorDetalle($event)" (actorPaisEvent)="mostrarPaisDetalle($event)" (actorPeliculasEvent)="mostrarPeliculasActor($event)" ></app-actor-listado>    
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <app-actor-lista-peliculas [peliculas]="peliculasSeleccionadas"></app-actor-lista-peliculas>
+      </div>
+      <div class="col-md-4">
+        <app-actor-detalle-pais [pais]="paisSeleccionado"></app-actor-detalle-pais>
+        
+      </div>
+      <div class="col-md-4">
+        <app-actor-detalle [actor]="actorSeleccionado"></app-actor-detalle>
+      </div>
+    </div>
+  </div>
+  
